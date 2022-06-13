@@ -4,7 +4,7 @@ import sys
 import os
 from os import path
 
-cwd = os.getcwd()
+cwd = os.path.dirname(os.path.realpath(__file__))
 
 # check files and folders exist
 if not path.exists(f"{cwd}/itunes_playlists"):
