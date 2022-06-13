@@ -11,10 +11,23 @@ orange='\033[0;33m'
 nc='\033[0m'
 bold=$(tput bold)
 
+if [ ! -d "${scriptpath}/itunes_playlists" ]; then
+    echo "'itunes_playlists' folder not detected. Making folder in script directory."
+    mkdir -p "${scriptpath}/itunes_playlists"
+fi
+if [ ! -d "${scriptpath}/walkman_playlists" ]; then
+    echo "'walkman_playlists' folder not detected. Making folder in script directory."
+    mkdir -p "${scriptpath}/walkman_playlists"
+fi
+
 processed_file_counter=0
 if [ $1 == "itunes-to-walkman" ]; then
     if [ ! -f "${scriptpath}/itunes_to_walkman_playlist.py" ]; then
         echo -e "${orange}'itunes_to_walkman_playlist.py' script missing${nc}"
+        exit 1
+    fi
+    if [ $(ls -A "${scriptpath}/itunes_playlists") ]; then
+        echo -e "${orange}No files detected in '${scriptpath}/itunes_playlists'${nc}"
         exit 1
     fi
     for playlist in ${scriptpath}/itunes_playlists/*; do
@@ -25,6 +38,10 @@ if [ $1 == "itunes-to-walkman" ]; then
 elif [ $1 == "walkman-to-itunes" ]; then
     if [ ! -f "${scriptpath}/walkman_to_itunes_playlist.py" ]; then
         echo -e "${orange}'walkman_to_itunes_playlist.py' script missing${nc}"
+        exit 1
+    fi
+    if [ $(ls -A "${scriptpath}/walkman_playlists") ]; then
+        echo -e "${orange}No files detected in '${scriptpath}/walkman_playlists'${nc}"
         exit 1
     fi
     for playlist in ${scriptpath}/walkman_playlists/*; do
