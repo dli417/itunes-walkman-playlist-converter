@@ -11,13 +11,23 @@ orange='\033[0;33m'
 nc='\033[0m'
 bold=$(tput bold)
 
+folder_creation_check=0
 if [ ! -d "${scriptpath}/itunes_playlists" ]; then
     echo "'itunes_playlists' folder not detected. Making folder in script directory."
     mkdir -p "${scriptpath}/itunes_playlists"
+    folder_creation_check=1
 fi
 if [ ! -d "${scriptpath}/walkman_playlists" ]; then
     echo "'walkman_playlists' folder not detected. Making folder in script directory."
     mkdir -p "${scriptpath}/walkman_playlists"
+    folder_creation_check=1
+fi
+if [ -z ${1+x} ]; then
+    if [ $folder_creation_check == "0" ]; then
+        echo -e "${orange}Command requires one argument (itunes-to-walkman, walkman-to-itunes)${nc}"
+    fi
+    unset green orange nc bold processed_file_counter
+    exit 1
 fi
 
 processed_file_counter=0
@@ -50,7 +60,7 @@ elif [ $1 == "walkman-to-itunes" ]; then
         ((processed_file_counter+=1))
     done
 else
-    echo -e "${orange}Command requires one argument (itunes-to-walkman, walkman-to-itunes)${nc}"
+    echo -e "${orange}Unrecognised argument (recognised arguments: itunes-to-walkman, walkman-to-itunes)${nc}"
     unset green orange nc bold processed_file_counter
     exit 1
 fi
