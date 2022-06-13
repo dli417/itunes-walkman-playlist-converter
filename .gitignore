@@ -206,4 +206,6 @@ cython_debug/
 # Project specific
 
 itunes_playlists/*
+itunes_playlists/.gitkeep
 walkman_playlists/*
+walkman_playlists/.gitkeep
