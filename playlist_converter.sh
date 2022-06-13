@@ -26,7 +26,7 @@ if [ $1 == "itunes-to-walkman" ]; then
         echo -e "${orange}'itunes_to_walkman_playlist.py' script missing${nc}"
         exit 1
     fi
-    if [ $(ls -A "${scriptpath}/itunes_playlists") ]; then
+    if [ -z "$(ls -A "${scriptpath}/itunes_playlists")" ]; then
         echo -e "${orange}No files detected in '${scriptpath}/itunes_playlists'${nc}"
         exit 1
     fi
@@ -40,7 +40,7 @@ elif [ $1 == "walkman-to-itunes" ]; then
         echo -e "${orange}'walkman_to_itunes_playlist.py' script missing${nc}"
         exit 1
     fi
-    if [ $(ls -A "${scriptpath}/walkman_playlists") ]; then
+    if [ -z "$(ls -A "${scriptpath}/walkman_playlists")" ]; then
         echo -e "${orange}No files detected in '${scriptpath}/walkman_playlists'${nc}"
         exit 1
     fi
