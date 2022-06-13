@@ -12,6 +12,8 @@ Scripts have been successfully run on the following system:
 
 ## Usage
 
+Run $ `playlist_converter.sh` once or manually create `itunes_playlists` and `walkman_playlists` folders
+
 To convert iTunes playlists to Walkman format:
 
 - Place iTunes playlists in `itunes_playlists` folder
