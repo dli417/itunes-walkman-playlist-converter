@@ -51,4 +51,4 @@ with open(f"{cwd}/walkman_playlists/{sys.argv[1]}", 'r') as walkman, open(f"{cwd
     if extm3u_counter != 1:
         print(f"Error: EXTM3U header count ({extm3u_counter}) is not 1")
     if unknown_line_format != 0:
-        print(f"Error: unknown line format ocurred {unknown_line_format} times")
+        print(f"Error: unknown line format occured {unknown_line_format} times")
