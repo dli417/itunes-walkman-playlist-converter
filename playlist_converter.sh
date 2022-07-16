@@ -42,7 +42,7 @@ if [ $1 == "itunes-to-walkman" ]; then
     fi
     for playlist in ${scriptpath}/itunes_playlists/*; do
         python3 ${scriptpath}/itunes_to_walkman_playlist.py "${playlist#"${scriptpath}/itunes_playlists/"}"
-        echo -e "${orange}'${playlist#"${scriptpath}/itunes_playlists/"}' processed${nc}"
+        # echo -e "${orange}'${playlist#"${scriptpath}/itunes_playlists/"}' processed${nc}"
         ((processed_file_counter+=1))
     done
 elif [ $1 == "walkman-to-itunes" ]; then
@@ -56,7 +56,7 @@ elif [ $1 == "walkman-to-itunes" ]; then
     fi
     for playlist in ${scriptpath}/walkman_playlists/*; do
         python3 ${scriptpath}/walkman_to_itunes_playlist.py "${playlist#"${scriptpath}/walkman_playlists/"}"
-        echo -e "${orange}'${playlist#"${scriptpath}/walkman_playlists/"}' processed${nc}"
+        # echo -e "${orange}'${playlist#"${scriptpath}/walkman_playlists/"}' processed${nc}"
         ((processed_file_counter+=1))
     done
 else
