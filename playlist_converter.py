@@ -14,7 +14,7 @@ import sys
 import os
 from unicodedata import normalize, is_normalized
 
-
+# message colours
 class m_colours:
     CLEAR = '\033[0m'
     GREEN = '\033[0;32m'
@@ -23,6 +23,7 @@ class m_colours:
 
 
 def check_directories_files_exist(dir_name):
+    # check for folders and .m3u8 files, return list of files to process
     for folder in ('itunes_playlists', 'walkman_playlists'):
         if not os.path.isdir(f"{cwd}/{folder}"):
             print(f"'{folder}' doesn't exist, creating folder")
@@ -37,6 +38,7 @@ def check_directories_files_exist(dir_name):
 
 
 def error_checks(read_format, write_format, file_in, file_out, extinf_counter, song_path_counter, extm3u_counter, unknown_line_format):
+    # check for errors, return converted songs numbers and error status
     conversion_errors_status = 0
     file_in.seek(0)
     file_out.seek(0)
@@ -70,6 +72,7 @@ def error_checks(read_format, write_format, file_in, file_out, extinf_counter, s
 
 
 def converter(file, read_format, write_format):
+    # convert playlist formats, return error status
     if read_format == "itunes":
         # song_path_length calculated from length of "/Users/danielli/Music/Music/Media.localized/"
         song_path_length = 44
@@ -126,18 +129,22 @@ if __name__ == '__main__':
     # check files and folders exist
     files_to_convert = check_directories_files_exist(f"{read_format}_playlists")
 
+    # initialise conversion error variables
     files_to_convert_count = len(files_to_convert)
     conversion_errors_count = 0
 
+    # convert playlist formats
     for file in files_to_convert:
         conversion_errors_status = converter(file, read_format, write_format)
         if conversion_errors_status == 1:
             conversion_errors_count += 1
 
+    # error stats calculations
     successful_conversions_count = files_to_convert_count - conversion_errors_count
-
     if conversion_errors_count == 0:
         summary_message_colour = m_colours.GREEN
     else:
         summary_message_colour = m_colours.RED
+
+    # print summary message
     print(f"{summary_message_colour}{successful_conversions_count}/{files_to_convert_count} files successfully converted without errors{m_colours.CLEAR}")
