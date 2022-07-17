@@ -82,7 +82,7 @@ def converter(file, read_format, write_format):
             if line.startswith("#EXTINF:"):
                 file_out.write("#EXTINF:,\n")
                 extinf_counter += 1
-            elif sys.argv[1] == "i2w" and line.startswith("/Users/danielli/Music/Music/Media.localized/"):
+            elif read_format == "itunes" and line.startswith("/Users/danielli/Music/Music/Media.localized/"):
                 # # normalise all song lines
                 # walkman.write(normalize('NFC', line[song_path_length:]))
                 # check and normalise lines that need to be normalised only
@@ -92,7 +92,7 @@ def converter(file, read_format, write_format):
                     trimmed_line = normalize('NFC', trimmed_line)
                 file_out.write(trimmed_line)
                 song_path_counter += 1
-            elif sys.argv[1] == "w2i" and "/" in line:
+            elif read_format == "walkman" and "/" in line:
                 file_out.write("/Users/danielli/Music/Music/Media.localized/{0}".format(line))
                 song_path_counter += 1
             elif line == "#EXTM3U\n":
