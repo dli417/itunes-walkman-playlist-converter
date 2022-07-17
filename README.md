@@ -1,6 +1,6 @@
 # itunes-walkman-playlist-converter
 
-Convert playlists (.m3u/.m3u8 format) between iTunes and Walkman formats
+Convert playlists (.m3u8 format) between iTunes and Walkman formats
 
 ## System requirements
 
@@ -12,16 +12,16 @@ Scripts have been successfully run on the following system:
 
 ## Usage
 
-Run $ `playlist_converter.sh` once or manually create `itunes_playlists` and `walkman_playlists` folders
+Run $ `playlist_converter.py` once or manually create `itunes_playlists` and `walkman_playlists` folders
 
 To convert iTunes playlists to Walkman format:
 
 - Place iTunes playlists in `itunes_playlists` folder
-- $ `playlist_converter.sh itunes-to-walkman`
+- $ `playlist_converter.py i2w`
 - Find Walkman formatted playlists in `walkman_playlists` folder
 
 To convert Walkman playlists to iTunes format:
 
 - Place Walkman playlists in `walkman_playlists` folder
-- $ `playlist_converter.sh walkman-to-itunes`
+- $ `playlist_converter.py w2i`
 - Find iTunes formatted playlists in `itunes_playlists` folder
