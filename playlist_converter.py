@@ -14,8 +14,9 @@ import sys
 import os
 from unicodedata import normalize, is_normalized
 
-# message colours
+
 class m_colours:
+    # message colours
     CLEAR = '\033[0m'
     GREEN = '\033[0;32m'
     ORANGE = '\033[0;33m'
