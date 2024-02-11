@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "itunes-walkman-playlist-converter"
+version = "0.1.0"
+description = "Convert playlists (.m3u8 format) between iTunes and Walkman formats"
+authors = ["dli417 <dli417@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
