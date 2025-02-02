@@ -74,9 +74,11 @@ def error_checks(read_format, write_format, file_in, file_out, extinf_counter, s
 
 def converter(file, read_format, write_format):
     # convert playlist formats, return error status
+    # variable created to make the function able to work on non-standard itunes library directories
+    itunes_library_path = "/Volumes/FireCuda/Users/danielli/Music/Music/Media.localized/"
     if read_format == "itunes":
         # song_path_length calculated from length of "/Users/danielli/Music/Music/Media.localized/"
-        song_path_length = 44
+        song_path_length = len(itunes_library_path)
     extinf_counter = 0
     song_path_counter = 0
     extm3u_counter = 0
@@ -86,7 +88,7 @@ def converter(file, read_format, write_format):
             if line.startswith("#EXTINF:"):
                 file_out.write("#EXTINF:,\n")
                 extinf_counter += 1
-            elif read_format == "itunes" and line.startswith("/Users/danielli/Music/Music/Media.localized/"):
+            elif read_format == "itunes" and line.startswith(itunes_library_path):
                 # # normalise all song lines
                 # walkman.write(normalize('NFC', line[song_path_length:]))
                 # check and normalise lines that need to be normalised only
@@ -97,7 +99,7 @@ def converter(file, read_format, write_format):
                 file_out.write(trimmed_line)
                 song_path_counter += 1
             elif read_format == "walkman" and "/" in line:
-                file_out.write("/Users/danielli/Music/Music/Media.localized/{0}".format(line))
+                file_out.write(itunes_library_path + line)
                 song_path_counter += 1
             elif line == "#EXTM3U\n":
                 file_out.write(line)
