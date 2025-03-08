@@ -207,4 +207,5 @@ cython_debug/
 
 itunes_playlists/*
 walkman_playlists/*
-music_to_sync/*
+music_to_sync/itunes_library/*
+music_to_sync/walkman_library/*
