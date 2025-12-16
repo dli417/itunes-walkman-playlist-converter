@@ -24,17 +24,17 @@ class m_colours:
 
 
 def check_directories_files_exist(dir_name):
-    # check for folders and .m3u8 files, return list of files to process
+    # check for folders and .m3u8/.m3u files, return list of files to process
     for folder in ('itunes_playlists', 'walkman_playlists'):
         if not os.path.isdir(f"{cwd}/{folder}"):
             print(f"'{folder}' doesn't exist, creating folder")
             os.mkdir(os.path.join(cwd, folder))
     files_to_convert = []
     for file in os.listdir(f"{cwd}/{dir_name}"):
-        if file.endswith('.m3u8'):
+        if file.endswith('.m3u8') or file.endswith('.m3u'):
             files_to_convert.append(file)
     if len(files_to_convert) == 0:
-        sys.exit(f"{m_colours.RED}Error: no '.m3u8' files detected in '{dir_name}'{m_colours.CLEAR}")
+        sys.exit(f"{m_colours.RED}Error: no '.m3u8' or '.m3u' files detected in '{dir_name}'{m_colours.CLEAR}")
     return files_to_convert
 
 
@@ -83,7 +83,12 @@ def converter(file, read_format, write_format):
     song_path_counter = 0
     extm3u_counter = 0
     unknown_line_format = 0
-    with open(f"{cwd}/{read_format}_playlists/{file}", 'r') as file_in, open(f"{cwd}/{write_format}_playlists/{file}", 'w+') as file_out:
+    # change any ".m3u" to ".m3u8" once converted
+    if file.endswith('.m3u'):
+        file_out_m3u8 = f"{file}8"
+    else:
+        file_out_m3u8 = file
+    with open(f"{cwd}/{read_format}_playlists/{file}", 'r') as file_in, open(f"{cwd}/{write_format}_playlists/{file_out_m3u8}", 'w+') as file_out:
         for line in file_in:
             if line.startswith("#EXTINF:"):
                 file_out.write("#EXTINF:,\n")
