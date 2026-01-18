@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+$HOME/.local/bin/itunesexport -library "$HOME/Projects/itunes-walkman-playlist-converter/itunes_library_xml/Library.xml" -output "$HOME/Projects/itunes-walkman-playlist-converter/itunes_playlists" -type EXT -includeAll -musicPath "/" -musicPathOrig "file:///"
+
+# $HOME/Projects/itunes-walkman-playlist-converter/playlist_converter.py $@
+$HOME/Projects/itunes-walkman-playlist-converter/playlist_converter.py i2w
